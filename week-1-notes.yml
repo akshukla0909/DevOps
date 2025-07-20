@@ -1,0 +1,125 @@
+# What is a distribution? What is Ubuntu?
+
+Linux is like a engine(kernel) and Ubuntu(distro) is its implementation like car(OS) 
+Ubuntu is a popular, free, and open-source Linux distribution OS
+
+# What is WSL- Windows Subsystem for Linux?
+
+Its compatibility layer developed by Microsoft allowing users to run a GNU/Linux environment, including command-line tools, utilities, and applications, directly on Windows without a separate virtual machine or dual-boot. 
+
+# Read this Official doc for more guide
+https://learn.microsoft.com/en-us/windows/wsl/install
+
+
+
+
+
+
+# ============================== File System And Navigation ===================================
+
+# Essential Commands
+pwd          # Show current location
+cd /         # Go to root
+cd ~         # Go to home directory
+cd ..        # Go one level up
+cd /var/log  # Go to log directory
+
+# What is diff between root vs Home directory
+root - This is the home directory of the root user (superuser), root user can access any user data
+home - Other user data
+
+# Listing files
+ls                   # List files
+ls -l                # Detailed list (permissions, size, owner)
+ls -a                # Include hidden files
+ls -lh               # Human-readable sizes
+
+# Creating and Deleting
+mkdir projects       # Make a directory
+touch file.txt       # Create a blank file
+rm file.txt          # Delete file
+rm -r foldername     # Delete folder recursively - folder and it's file inside it
+
+# How to write in a file
+echo "Hello Akash!" > dummy-file.txt   # It will create a file and write a text on it, over ride if already exist
+echo "Hello Akash!" >> dummy-file.txt  # Instead over write it will append
+
+| Task                | Command Example                |
+| ------------------- | ------------------------------ |
+| Write one line      | `echo "Hello" > file.txt`      |
+| Append a line       | `echo "More text" >> file.txt` |
+| Type multiple lines | `cat > file.txt`               |
+| Use a text editor   | `nano file.txt`                |
+| View file contents  | `cat file.txt`                 |
+
+# Quick Tips
+man ls  # This opens the manual (man) page for the ls command. It shows
+cd help #
+
+
+# Optional: Add an alias in your -> .bashrc
+Aliases make your life easier — like giving your sword a nickname 
+
+
+
+
+
+
+# -----------------------Permissions & Ownership -------------------------
+
+ls -l  # will show you the access and permission
+
+[ - ]     : file (d = directory, l = symlink)
+[ rwx ]   : Owner's permissions
+[ r-x ]   : Group’s permissions
+[ r-- ]   : Others' permissions
+
+r- read(4), w- write(2), x- execute(1)
+
+So hit ls -l and got 
+
+# -rwxrwxrwx 1 root root 36 Jul 20 11:02 dummy-file.txt
+
+| Field            | Meaning                     |
+| ---------------- | --------------------------- |
+| `-rwxrwxrwx`     | File type & permissions     |
+| `1`              | Hard link count             |
+| `root`           | Owner (user) of the file    |
+| `root`           | Group of the file           |
+| `36`             | File size (in bytes)        |
+| `Jul 20 11:02`   | Last modified date and time |
+| `dummy-file.txt` | File name                   |
+
+
+# chmod -> change permission for this file 
+chmod u+x file.sh   # Add execute permission to user
+chmod g-w file.sh   # Remove write from group
+chmod o=r file.sh   # Set others to read-only
+
+chmod 744 dummy-file.txt # Only owner can rwx while other can read only
+ls -l
+
+# chown -> change ownership for file
+sudo chown akash:akash file.txt   # Change file owner and group
+sudo chown root:root script.sh    # Give file to root
+
+# sudo -> Execute as root
+Use sudo for admin-level commands:-
+
+sudo apt update
+sudo systemctl restart nginx
+sudo rm -rf /var/log/*
+
+Note -> only users added in sudoers file can exec this sude cmd, if the user is not listed
+the sudo cmd wont be execute
+Not every one is permitted for sudo action command it is asked you pw in every 15 mnt 
+
+sudo -l  # It will list the commands you’re allowed to run as sudo.
+
+
+
+
+
+
+# ========================= Process Management ==================
+ 
