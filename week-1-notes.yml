@@ -4,7 +4,6 @@ Linux is like a engine(kernel) and Ubuntu(distro) is its implementation like car
 Ubuntu is a popular, free, and open-source Linux distribution OS
 
 # What is WSL- Windows Subsystem for Linux?
-
 Its compatibility layer developed by Microsoft allowing users to run a GNU/Linux environment, including command-line tools, utilities, and applications, directly on Windows without a separate virtual machine or dual-boot. 
 
 # Read this Official doc for more guide
@@ -14,8 +13,7 @@ https://learn.microsoft.com/en-us/windows/wsl/install
 
 
 
-
-# ============================== File System And Navigation ===================================
+# ==============================Part 1: File System And Navigation ===================================
 
 # Essential Commands
 pwd          # Show current location
@@ -65,7 +63,7 @@ Aliases make your life easier — like giving your sword a nickname
 
 
 
-# -----------------------Permissions & Ownership -------------------------
+# ----------------------- Part 2: Permissions & Ownership -------------------------
 
 ls -l  # will show you the access and permission
 
@@ -121,5 +119,61 @@ sudo -l  # It will list the commands you’re allowed to run as sudo.
 
 
 
-# ========================= Process Management ==================
+# ========================= Part 3: Process Management ==================
+
+In Linux, every running command, service, or app is a process. The OS treats them like individual workers, each with a unique ID: the PID (Process ID).
  
+ 1. See What's Running –> ps, top, htop 
+
+ps # process snapshot
+ps aux ->  
+a: Show processes for all users
+u: Show user
+x: Include background processes
+
+top  # Live Process Monitor
+Shows live CPU & memory usage
+Sorted by resource consumption
+
+htop # Enhanced of top
+sudo apt install htop  # install if not installed
+htop
+
+# Kill Terminal
+Kill terminal by Process ID
+ps aux | grep node         # Find the PID
+kill 1234                 # Politely ask it to stop
+kill -9 1234              # Force kill if it ignore normal kill
+
+# killall – Terminate by name
+killall node              # Kill all processes named 'node'
+
+# Manage Background & Foreground Jobs
+ping google.com &  # will sends continuous ICMP packets (pings) to Google's server to test network connectivity.
+
+# Manage System Services – systemctl
+Start, Stop, Restart, Enable:
+sudo systemctl start nginx
+sudo systemctl stop nginx
+sudo systemctl restart nginx
+sudo systemctl status nginx
+sudo systemctl enable nginx     # Auto-start on boot
+
+
+# ======================== Part 4: Networking Essentials (DevOps Starter Kit)
+
+ping –> Check if a host is reachable
+ping google.com  # sends packets to check network reachability
+curl https://api.github.com   # talk to api, servers, url
+
+netstat -tuln # netstat – View network connections (:older
+ss -tuln # Modern more used - 
+t = TCP, u = UDP, l = Listening, n = Numeric IPs
+
+ufw – Simple Firewall Management
+
+sudo ufw status             # View status
+sudo ufw allow 22           # Allow SSH port
+sudo ufw allow 80           # Allow HTTP
+sudo ufw enable             # Turn firewall on
+
