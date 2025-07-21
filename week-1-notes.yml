@@ -160,20 +160,65 @@ sudo systemctl status nginx
 sudo systemctl enable nginx     # Auto-start on boot
 
 
-# ======================== Part 4: Networking Essentials (DevOps Starter Kit)
+# ======================== Part 4: Networking Essentials (DevOps Starter Kit) =============
 
 ping –> Check if a host is reachable
 ping google.com  # sends packets to check network reachability
 curl https://api.github.com   # talk to api, servers, url
+curl -I https://google.com    # send http req and fetch only headers
+curl -o file.txt http://example.com # download the content and save it to the file.txt
 
 netstat -tuln # netstat – View network connections (:older
 ss -tuln # Modern more used - 
 t = TCP, u = UDP, l = Listening, n = Numeric IPs
 
 ufw – Simple Firewall Management
+Firewall -> A firewall is like a security guard standing at your house’s doors.
+It checks who's allowed to come in, and who must stay out — so that only trusted visitors can enter.
 
-sudo ufw status             # View status
+sudo ufw status             # View status of fire wall is on or off
 sudo ufw allow 22           # Allow SSH port
 sudo ufw allow 80           # Allow HTTP
 sudo ufw enable             # Turn firewall on
 
+
+
+# ======================== Part 5:  SSH & SCP – AWS EC2 Access & File Transfer ===============
+
+SSH -> To log in and control the server
+
+ssh ubuntu@<EC2-IP> # skip key verification
+ssh -i my-key.pem ubuntu@<EC2-PUBLIC-IP> # if using a private key -> -i my-key.pem
+
+SCP ->  To copy files to or from the server(Secure file Transfer)
+
+scp myfile.txt ubuntu@your-server-ip:/home/ubuntu/  # To send a file to the server:
+scp ubuntu@your-server-ip:/home/ubuntu/log.txt .  # To download a file from the server:
+
+
+
+
+
+# ==================== Part 6: Package Installation - apt, git, node, docker ====================
+
+Update your system
+sudo apt update # apt advanced package tool
+sudo apt upgrade 
+
+install git
+sudo apt install git
+git --version
+
+install nodejs
+sudo apt install nodejs npm
+node -v
+npm -v
+
+install docker
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+docker --version
+
+Give your user permission to run Docker:
+sudo usermod -aG docker $USER

@@ -1,0 +1,64 @@
+# ============== Docker Core :- build once run everywhere ===========
+
+Common Terms
+
+| Term         | Real World Analogy              |
+| ------------ | ------------------------------- |
+| Docker Image | Blueprint or recipe             |
+| Container    | lunch box in your hand          |
+| Dockerfile   | Instruction manual              |
+| Volume       | External hard disk attached     |
+| Network      | LAN connection for containers   |
+
+# Docker Image – The Prototype or Mould (Immutable Recipe)
+A read-only template with the app + OS + libraries bundled.
+docker pull node:18
+docker images
+
+
+# Docker Container – The Running Instance
+A running, lightweight, isolated process based on an image. (Its like a mini computer inside a computer)
+Docker relies on Linux kernel features to create lightweight, fast, and secure isolation without running a full OS like virtual machines.
+Two Key Linux Features Docker Uses:  Namespaces, Control Groups (cgroups)
+
+docker run -it node:18 bash
+-it: Interactive terminal
+bash: Open a shell inside the container
+
+docker ps -a       # See all containers
+docker stop <ID>   # Stop a container
+docker rm <ID>     # Remove a container
+
+# Docker Volumes – Persistent Storage
+Volumes store data outside the container lifecycle.
+Even if container is deleted, volume data survives.
+Great for databases, logs, uploads, etc.
+
+docker volume create mydata
+docker run -v mydata:/app/data ubuntu
+
+docker volume ls
+docker volume inspect mydata
+
+# Docker Networks – Container Communication
+Custom networks allow containers to talk to each other securely.
+
+docker network create mynetwork
+docker run -dit --name web --network mynetwork nginx
+docker run -dit --name app --network mynetwork node
+
+# Docker Hub & ECR 
+Docker Hub -> is the default and public container registry provided by Docker Inc.
+ECR -> is a private, secure, and scalable Docker image vault tightly integrated with other AWS services.
+
+# Dockerfile
+A file that contains step-by-step instructions to build your image
+ -Dockerfile syntax
+docker build, docker run, docker ps, docker stop
+
+#  .dockerignore and Image Optimization
+Like .gitignore, it tells Docker what to ignore while copying files. This keeps your image clean.
+
+Task ->
+Build
+App running in Docker locally + source code on GitHub
