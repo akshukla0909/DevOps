@@ -90,10 +90,13 @@ App running in Docker locally + source code on GitHub
   Hosting model where you don’t manage the server.
   Servers are still there, but provider handles them.
   You only upload your code/functions.
-  AWS Lambda, Vercel, Netlify, Firebase 
+  Model Providers:- AWS Lambda, Vercel, Netlify, Firebase 
   
 
 # Managed
+  Hosting service where provider manages the technical side of hosting.
+  You focus on your website/app, not on server setup or maintenance.
+  Can be applied to WordPress, VPS, Cloud, or Dedicated hostin
 
 # Cloud Hosting
   Website run on multiple server 
