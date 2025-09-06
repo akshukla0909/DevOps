@@ -1,5 +1,5 @@
 # 1. Use official Node.js base image
-FROM node:18-alpine
+FROM node:22-alpine
 
 # 2. Set working directory inside container
 WORKDIR /app
@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # 4. Install dependencies
-RUN npm install --production
+# npm install --production for production only
+RUN npm install          
 
 # 5. Copy the rest of the source code
 COPY . .
@@ -17,4 +18,4 @@ COPY . .
 EXPOSE 3000
 
 # 7. Command to run the app
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]

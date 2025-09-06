@@ -1,73 +1,5 @@
-# ============== Docker Core :- build once run everywhere ===========
-
-Common Terms
-
-| Term         | Real World Analogy                                                                                   |
-| ------------ | -----------------------------------------------------------------------------------------------------                                                                     |
-| Docker Image | a Blueprint or snapshot of project                                                                   |
-| Container    | A instance or actual running implementation of docker image                                          |
-| Dockerfile   | Instruction manual                                                                                   |
-| Volume       | External hard disk attached/ To persist data -- a folder for container                               |
-| Network      | LAN connection for containers  docker container can communicate using network/ communication bridge  |
-
-# Docker Image – The Prototype or Mould (Immutable Recipe)
-A read-only template with the app + OS + libraries bundled.
-docker pull node:18
-docker images
-
-
-# Docker Container – The Running Instance
-A running, lightweight, isolated process based on an image. (Its like a mini computer inside a computer)
-Docker relies on Linux kernel features to create lightweight, fast, and secure isolation without running a full OS like virtual machines.
-Two Key Linux Features Docker Uses:  Namespaces, Control Groups (cgroups)
-
-docker run -it node:18 bash
--it: Interactive terminal
-bash: Open a shell inside the container
-
-docker ps -a       # See all containers
-docker stop <ID>   # Stop a container
-docker rm <ID>     # Remove a container
-
-# Docker Volumes – Persistent Storage
-Volumes store data outside the container lifecycle.
-Even if container is deleted, volume data survives.
-Great for databases, logs, uploads, etc.
-
-docker volume create mydata
-docker run -v mydata:/app/data ubuntu
-
-docker volume ls
-docker volume inspect mydata
-
-# Docker Networks – Container Communication
-Custom networks allow containers to talk to each other securely.
-
-docker network create mynetwork
-docker run -dit --name web --network mynetwork nginx
-docker run -dit --name app --network mynetwork node
-
-# Docker Hub & ECR 
-Docker Hub -> is the default and public container registry provided by Docker Inc.
-ECR -> is a private, secure, and scalable Docker image vault tightly integrated with other AWS services.
-
-# Dockerfile
-A file that contains step-by-step instructions to build your image
- -Dockerfile syntax
-docker build, docker run, docker ps, docker stop
-
-#  .dockerignore and Image Optimization
-Like .gitignore, it tells Docker what to ignore while copying files. This keeps your image clean.
-
-Task ->
-Build
-App running in Docker locally + source code on GitHub
-
-
-
 
 # =========================== Common Hosting Types & Terms  =================================
-
 # Shared Hosting
   Multiple websites are hosted in same server, Common CPU, RAM, Bandwidth (like shared hall/room)
   Cheap and easy
@@ -101,3 +33,137 @@ App running in Docker locally + source code on GitHub
 # Cloud Hosting
   Website run on multiple server 
   Ideal for scalable user base
+
+# ============== Docker Core :- build once run everywhere ===========
+
+What is Docker Engine ->
+
+  Docker Engine = the core of Docker
+  Think of Docker Engine as the “heart” or “brain” of Docker. 
+  It’s the software that actually builds, runs, and manages containers.
+
+  Docker Engine has three main components:
+
+  1. Docker Daemon (dockerd)
+    This is the background service running on your system.
+    Responsibilities:
+    Builds Docker images (docker build)
+    Runs containers (docker run)
+    Manages networks, volumes, and other container resources
+    CLI commands talk to this daemon.
+
+  2. Docker CLI (docker)
+    This is the command-line interface you use.
+    Example:
+    docker build -t myapp .
+    docker run -p 3000:3000 myapp
+
+   These commands don’t build/run containers directly — they ask the Docker daemon to do it.
+
+  3. REST API
+    Docker Daemon exposes a REST API that the CLI (or other tools) use to communicate.
+
+
+# Common Terms
+
+| Term         | Real World Analogy                                                                                   |
+| ------------ | -----------------------------------------------------------------------------------------------------                                                                     |
+| Docker Image | a Blueprint or snapshot of project                                                                   |
+| Container    | A instance or actual running implementation of docker image                                          |
+| Dockerfile   | Instruction manual                                                                                   |
+| Volume       | External hard disk attached/ To persist data -- a folder for container                               |
+| Network      | LAN connection for containers  docker container can communicate using network/ communication bridge  |
+
+# Docker Image – The Prototype or Mould (Immutable Recipe)
+  A read-only template with the app + OS + libraries bundled.
+  docker pull node:18
+  docker images  # will list down all images in docker 
+
+
+# Docker Container – The Running Instance
+  A running, lightweight, isolated process based on an image. (Its like a mini computer inside a computer)
+  Docker relies on Linux kernel features to create lightweight, fast, and secure isolation without running a full OS like virtual machines.
+  Two Key Linux Features Docker Uses:  Namespaces, Control Groups (cgroups)
+  
+  docker run -it node:18 bash
+  -it: Interactive terminal
+  bash: Open a shell inside the container
+
+
+# Docker Volumes – Persistent Storage
+  Volumes store data outside the container lifecycle.
+  Even if container is deleted, volume data survives.
+  Great for databases, logs, uploads, etc.
+
+
+# Docker Networks – Container Communication
+  Custom networks allow containers to talk to each other securely.
+  
+  docker network create mynetwork
+  docker run -dit --name web --network mynetwork nginx
+  docker run -dit --name app --network mynetwork node
+
+# Docker Hub & ECR 
+  Docker Hub -> is the default and public container registry provided by Docker Inc.
+  ECR -> is a private, secure, and scalable Docker image vault tightly integrated with other AWS services.
+
+# Dockerfile
+  A file that contains step-by-step instructions to build your image
+     -Dockerfile syntax
+  docker build, docker run, docker ps, docker stop
+
+#  .dockerignore and Image Optimization
+Like .gitignore, it tells Docker what to ignore while copying files. This keeps image clean.
+
+
+# ============================ Docerk App ============================
+
+Building an App running in Docker locally + source code on GitHub
+
+Steps =>
+1 -> Create a dir and setup a basic express server
+2 -> Write docker file 
+3 -> create a .dockerignore and .gitignore file and optimize it
+4 -> Build & Run Container
+   docker build -t myapp .   # build the image (if not already done)
+   docker run -p 3000:3000 myapp
+
+5 -> Push to docker hub (Optional)
+     When you push the image to docker hub anyone can pull it
+     flow-
+       build image locally-- as prev did
+       tag image for docker hub -> docker tag myapp:latest your-dockerhub-username/myapp:latest 
+       push-> docker push your-dockerhub-username/myapp:latest
+       pull-> docker pull your-dockerhub-username/myapp:latest
+
+  => If We are using AWS(production)- then we have to use 
+    AWS's own container registry(AWS ECR) to push there docker image
+    so that AWS or any server can pull it
+
+
+
+# =========== Essential Docker Commands ============================
+
+# Images
+  docker build -t my-app .  # build the docker image from local
+  docker images            # will list down all images in docker
+  docker rmi my-app         # remove image from docker
+  docker rmi -f my-app 
+
+
+# Container
+  docker run -d -p 3000:3000 --name conatiner-name image-name  # run a container -d (run in detached background)
+  <hostPort>:<containerPort> <image>  # port is optional but essential when have to access server outside container (even for local host can not access if no port is mapped)
+  docker ps -a                        # See all containers
+  docker ps                           # show only running containers
+  docker stop <ID>                    # Stop a container
+  docker start <ID or name>           # Re start a container 
+  docker rm <ID>                      # Remove a container
+  docker rm -f 
+
+# Volume
+
+  docker volume create mydata
+  docker run -v mydata:/app/data ubuntu
+  docker volume ls
+  docker volume inspect mydata
