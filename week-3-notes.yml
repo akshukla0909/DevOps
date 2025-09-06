@@ -1,0 +1,53 @@
+## 🟨 **Week 2 – Docker Compose + MERN + MongoDB + ENV Handling**
+### **Overview**
+📌 **Outcome by the end of this week:**
+
+* Full MERN stack app running locally **inside Docker containers**
+* MongoDB data persists safely using volumes
+* Environment variables manage configuration securely
+* Containers communicate seamlessly over Docker network
+
+---
+
+### **🔹 Learning Outcomes / Topics**
+
+1. **Multi-container setup with Docker Compose**
+
+   * Learn how to define multiple services (frontend, backend, database) in a single `docker-compose.yml`.
+   * Understand **service dependencies** (`depends_on`) and Docker networking.
+
+2. **Backend + MongoDB Integration**
+
+   * Connect Node.js / Express backend to MongoDB running in a separate container.
+   * Use MongoDB connection strings with environment variables.
+
+3. **Frontend + Backend Communication**
+
+   * Set up a React frontend that communicates with the backend using environment variables (`REACT_APP_API_URL`).
+   * Learn how containers can talk to each other using **service names**.
+
+4. **Environment Variables Handling**
+
+   * Use `.env` file for storing sensitive info like DB URI, passwords, ports.
+   * Pass `.env` values into Docker Compose services.
+
+5. **Data Persistence with Volumes**
+
+   * Learn how Docker volumes work to persist database data even if containers are removed or restarted.
+
+6. **Build & Run MERN stack locally in containers**
+
+   * Run multi-container MERN app with a single command:
+
+     ```bash
+     docker-compose up --build
+     ```
+   * Verify connectivity: frontend → backend → database.
+
+7. **Best Practices**
+
+   * Separate Dockerfiles for frontend and backend.
+   * Avoid committing sensitive info (use `.env` and `.dockerignore`).
+   * Structure project for maintainability and scalability.
+
+---

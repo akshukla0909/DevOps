@@ -1,10 +1,67 @@
+# **Week 1 Learnings – Key Points**
+
+### **Linux Basics**
+
+* Linux = kernel, Ubuntu = popular Linux distribution (OS).
+* WSL = Windows Subsystem for Linux → run Linux on Windows without VM.
+
+### **File System & Navigation**
+
+* `pwd`, `cd`, `ls` for navigation.
+* Root (`/`) vs Home (`~/`) directory.
+* Create/delete files/folders: `mkdir`, `touch`, `rm`, `rm -r`.
+* Write/append to files: `echo`, `cat`, `nano`.
+* `.dockerignore` concept (optional in Docker workflow).
+
+### **Permissions & Ownership**
+
+* File permissions: `rwx` (read, write, execute) for user, group, others.
+* Commands: `ls -l`, `chmod` (change permissions), `chown` (change ownership).
+* `sudo` → execute commands as root; check privileges with `sudo -l`.
+
+### **Process Management**
+
+* Processes have PID; view with `ps`, `top`, `htop`.
+* Kill processes: `kill <PID>`, `killall <name>`.
+* Background/foreground jobs: `&` operator.
+* System services: `systemctl start|stop|restart|status|enable`.
+
+### **Networking Essentials**
+
+* `ping`, `curl` → check connectivity, fetch headers or content.
+* `netstat`, `ss` → view open ports and connections.
+* `ufw` → firewall management (allow/deny ports).
+
+### **SSH & SCP**
+
+* SSH → login to remote server (`ssh -i key.pem user@IP`).
+* SCP → secure copy files to/from server.
+
+### **Package Installation**
+
+* System update: `sudo apt update && sudo apt upgrade`.
+* Install packages: `git`, `nodejs/npm`, `docker`.
+* Check versions: `git --version`, `node -v`, `npm -v`, `docker --version`.
+* Docker setup: start & enable service, add user to `docker` group.
+
+### **Miscellaneous Tips**
+
+* Aliases → shortcut commands via `.bashrc`.
+* Manual pages: `man <command>` for help.
+* Node version conflicts → can use `.nvmrc` or Docker for consistency.
+
+
+# ============================ Part 0: Intro to Linux & WSL ============================
+
 # What is a distribution? What is Ubuntu?
 
-Linux is like a engine(kernel) and Ubuntu(distro) is its implementation like car(OS) 
-Ubuntu is a popular, free, and open-source Linux distribution OS
+  Linux is like a engine(kernel) and Ubuntu(distro) is its implementation like car(OS) 
+  Ubuntu is a popular, free, and open-source Linux distribution OS
 
 # What is WSL- Windows Subsystem for Linux?
-Its compatibility layer developed by Microsoft allowing users to run a GNU/Linux environment, including command-line tools, utilities, and applications, directly on Windows without a separate virtual machine or dual-boot. 
+  Its compatibility layer developed by Microsoft allowing users to run a GNU/Linux environment, 
+  including command-line tools, utilities, and applications, 
+  directly on Windows without a separate virtual machine or dual-boot. 
 
 # Read this Official doc for more guide
 https://learn.microsoft.com/en-us/windows/wsl/install
@@ -23,8 +80,8 @@ https://learn.microsoft.com/en-us/windows/wsl/install
   cd /var/log  # Go to log directory
 
 # What is diff between root vs Home directory
-root - This is the home directory of the root user (superuser), root user can access any user data
-home - Other user data
+  root - This is the home directory of the root user (superuser), root user can access any user data
+  home - Other user data
 
 # Listing files
   ls                   # List files
@@ -42,21 +99,21 @@ home - Other user data
   echo "Hello Akash!" > dummy-file.txt   # It will create a file and write a text on it, over ride if already exist
   echo "Hello Akash!" >> dummy-file.txt  # Instead over write it will append
 
-| Task                | Command Example                |
-| ------------------- | ------------------------------ |
-| Write one line      | `echo "Hello" > file.txt`      |
-| Append a line       | `echo "More text" >> file.txt` |
-| Type multiple lines | `cat > file.txt`               |
-| Use a text editor   | `nano file.txt`                |
-| View file contents  | `cat file.txt`                 |
+  | Task                | Command Example                |
+  | ------------------- | ------------------------------ |
+  | Write one line      | `echo "Hello" > file.txt`      |
+  | Append a line       | `echo "More text" >> file.txt` |
+  | Type multiple lines | `cat > file.txt`               |
+  | Use a text editor   | `nano file.txt`                |
+  | View file contents  | `cat file.txt`                 |
 
 # Quick Tips
-man ls  # This opens the manual (man) page for the ls command. It shows
-cd help 
+  man ls  # This opens the manual (man) page for the ls command. It shows
+  cd help 
 
 
 # Optional: Add an alias in your -> .bashrc
-Aliases make your life easier — like giving your sword a nickname 
+  Aliases make your life easier — like giving your sword a nickname 
 
 
 
@@ -64,16 +121,16 @@ Aliases make your life easier — like giving your sword a nickname
 
 # ----------------------- Part 2: Permissions & Ownership -------------------------
 
-ls -l  # will show you the access and permission
+  ls -l  # will show you the access and permission
 
-[ - ]     : file (d = directory, l = symlink)
-[ rwx ]   : Owner's permissions
-[ r-x ]   : Group’s permissions
-[ r-- ]   : Others' permissions
-
-r- read(4), w- write(2), x- execute(1)
-
-So hit ls -l and got 
+  [ - ]     : file (d = directory, l = symlink)
+  [ rwx ]   : Owner's permissions
+  [ r-x ]   : Group’s permissions
+  [ r-- ]   : Others' permissions
+  
+  r- read(4), w- write(2), x- execute(1)
+  
+  So hit ls -l and got 
 
 # -rwxrwxrwx 1 root root 36 Jul 20 11:02 dummy-file.txt
 
@@ -102,7 +159,8 @@ So hit ls -l and got
 
 # sudo -> Execute as root
   Use sudo for admin-level commands:-
-  sudo - "superuser do"
+  sudo - "superuser do" 
+  If you dont have sudo access the sudo command will fail
   
   sudo apt update
   sudo systemctl restart nginx
@@ -121,7 +179,8 @@ So hit ls -l and got
 
 # ========================= Part 3: Process Management ==================
 
-In Linux, every running command, service, or app is a process. The OS treats them like individual workers, each with a unique ID: the PID (Process ID).
+  In Linux, every running command, service, or app is a process. 
+  The OS treats them like individual workers, each with a unique ID: the PID (Process ID).
  
 1. See What's Running –> ps, top, htop 
 
