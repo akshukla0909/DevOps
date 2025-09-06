@@ -16,31 +16,31 @@ https://learn.microsoft.com/en-us/windows/wsl/install
 # ==============================Part 1: File System And Navigation ===================================
 
 # Essential Commands
-pwd          # Show current location
-cd /         # Go to root
-cd ~         # Go to home directory
-cd ..        # Go one level up
-cd /var/log  # Go to log directory
+  pwd          # Show current location
+  cd /         # Go to root
+  cd ~         # Go to home directory
+  cd ..        # Go one level up
+  cd /var/log  # Go to log directory
 
 # What is diff between root vs Home directory
 root - This is the home directory of the root user (superuser), root user can access any user data
 home - Other user data
 
 # Listing files
-ls                   # List files
-ls -l                # Detailed list (permissions, size, owner)
-ls -a                # Include hidden files
-ls -lh               # Human-readable sizes
+  ls                   # List files
+  ls -l                # Detailed list (permissions, size, owner)
+  ls -a                # Include hidden files
+  ls -lh               # Human-readable sizes
 
 # Creating and Deleting
-mkdir projects       # Make a directory
-touch file.txt       # Create a blank file
-rm file.txt          # Delete file
-rm -r foldername     # Delete folder recursively - folder and it's file inside it
+  mkdir projects       # Make a directory
+  touch file.txt       # Create a blank file
+  rm file.txt          # Delete file
+  rm -r foldername     # Delete folder recursively - folder and it's file inside it
 
 # How to write in a file
-echo "Hello Akash!" > dummy-file.txt   # It will create a file and write a text on it, over ride if already exist
-echo "Hello Akash!" >> dummy-file.txt  # Instead over write it will append
+  echo "Hello Akash!" > dummy-file.txt   # It will create a file and write a text on it, over ride if already exist
+  echo "Hello Akash!" >> dummy-file.txt  # Instead over write it will append
 
 | Task                | Command Example                |
 | ------------------- | ------------------------------ |
@@ -77,41 +77,42 @@ So hit ls -l and got
 
 # -rwxrwxrwx 1 root root 36 Jul 20 11:02 dummy-file.txt
 
-| Field            | Meaning                     |
-| ---------------- | --------------------------- |
-| `-rwxrwxrwx`     | File type & permissions     |
-| `1`              | Hard link count             |
-| `root`           | Owner (user) of the file    |
-| `root`           | Group of the file           |
-| `36`             | File size (in bytes)        |
-| `Jul 20 11:02`   | Last modified date and time |
-| `dummy-file.txt` | File name                   |
+  | Field            | Meaning                     |
+  | ---------------- | --------------------------- |
+  | `-rwxrwxrwx`     | File type & permissions     |
+  | `1`              | Hard link count             |
+  | `root`           | Owner (user) of the file    |
+  | `root`           | Group of the file           |
+  | `36`             | File size (in bytes)        |
+  | `Jul 20 11:02`   | Last modified date and time |
+  | `dummy-file.txt` | File name                   |
 
 
 # chmod -> change permission for this file 
-chmod u+x file.sh   # Add execute permission to user
-chmod g-w file.sh   # Remove write from group
-chmod o=r file.sh   # Set others to read-only
-
-chmod 744 dummy-file.txt # Only owner can rwx while other can read only
-ls -l
+  chmod u+x file.sh   # Add execute permission to user
+  chmod g-w file.sh   # Remove write from group
+  chmod o=r file.sh   # Set others to read-only
+  
+  chmod 744 dummy-file.txt # Only owner can rwx while other can read only
+  ls -l
 
 # chown -> change ownership for file
-sudo chown akash:akash file.txt   # Change file owner and group
-sudo chown root:root script.sh    # Give file to root
+  sudo chown akash:akash file.txt   # Change file owner and group
+  sudo chown root:root script.sh    # Give file to root
 
 # sudo -> Execute as root
-Use sudo for admin-level commands:-
-
-sudo apt update
-sudo systemctl restart nginx
-sudo rm -rf /var/log/*
-
-Note -> only users added in sudoers file can exec this sude cmd, if the user is not listed
-the sudo cmd wont be execute
-Not every one is permitted for sudo action command it is asked you pw in every 15 mnt 
-
-sudo -l  # It will list the commands you’re allowed to run as sudo.
+  Use sudo for admin-level commands:-
+  sudo - "superuser do"
+  
+  sudo apt update
+  sudo systemctl restart nginx
+  sudo rm -rf /var/log/*
+  
+  Note -> only users added in sudoers file can exec this sude cmd, if the user is not listed
+  the sudo cmd wont be execute
+  Not every one is permitted for sudo action command it is asked you pw in every 15 mnt 
+  
+  sudo -l  # It will list the commands you’re allowed to run as sudo.
 
 
 
@@ -122,77 +123,77 @@ sudo -l  # It will list the commands you’re allowed to run as sudo.
 
 In Linux, every running command, service, or app is a process. The OS treats them like individual workers, each with a unique ID: the PID (Process ID).
  
- 1. See What's Running –> ps, top, htop 
+1. See What's Running –> ps, top, htop 
 
-ps # process snapshot
-ps aux ->  
-a: Show processes for all users
-u: Show user
-x: Include background processes
+  ps # process snapshot
+  ps aux ->  
+  a: Show processes for all users
+  u: Show user
+  x: Include background processes
 
-top  # Live Process Monitor
-Shows live CPU & memory usage
-Sorted by resource consumption
+  top  # Live Process Monitor
+  Shows live CPU & memory usage
+  Sorted by resource consumption
 
-htop # Enhanced of top
-sudo apt install htop  # install if not installed
-htop
+  htop # Enhanced of top
+  sudo apt install htop  # install if not installed
+  htop
 
 # Kill Terminal
-Kill terminal by Process ID
-ps aux | grep node         # Find the PID
-kill 1234                 # Politely ask it to stop
-kill -9 1234              # Force kill if it ignore normal kill
+  Kill terminal by Process ID
+  ps aux | grep node         # Find the PID
+  kill 1234                 # Politely ask it to stop
+  kill -9 1234              # Force kill if it ignore normal kill
 
 # killall – Terminate by name
-killall node              # Kill all processes named 'node'
+  killall node              # Kill all processes named 'node'
 
 # Manage Background & Foreground Jobs
-ping google.com &  # will sends continuous ICMP packets (pings) to Google's server to test network connectivity.
+  ping google.com &  # will sends continuous ICMP packets (pings) to Google's server to test network connectivity.
 
 # Manage System Services – systemctl
-Start, Stop, Restart, Enable:
-sudo systemctl start nginx
-sudo systemctl stop nginx
-sudo systemctl restart nginx
-sudo systemctl status nginx
-sudo systemctl enable nginx     # Auto-start on boot
+  Start, Stop, Restart, Enable:
+  sudo systemctl start nginx
+  sudo systemctl stop nginx
+  sudo systemctl restart nginx
+  sudo systemctl status nginx
+  sudo systemctl enable nginx     # Auto-start on boot
 
 
 # ======================== Part 4: Networking Essentials (DevOps Starter Kit) =============
 
-ping –> Check if a host is reachable
-ping google.com  # sends packets to check network reachability
-curl https://api.github.com   # talk to api, servers, url
-curl -I https://google.com    # send http req and fetch only headers
-curl -o file.txt http://example.com # download the content and save it to the file.txt
-
-netstat -tuln # netstat – View network connections (:older
-ss -tuln # Modern more used - 
-t = TCP, u = UDP, l = Listening, n = Numeric IPs
-
-ufw – Simple Firewall Management
-Firewall -> A firewall is like a security guard standing at your house’s doors.
-It checks who's allowed to come in, and who must stay out — so that only trusted visitors can enter.
-
-sudo ufw status             # View status of fire wall is on or off
-sudo ufw allow 22           # Allow SSH port
-sudo ufw allow 80           # Allow HTTP
-sudo ufw enable             # Turn firewall on
+  ping –> Check if a host is reachable
+  ping google.com  # sends packets to check network reachability
+  curl https://api.github.com   # talk to api, servers, url
+  curl -I https://google.com    # send http req and fetch only headers
+  curl -o file.txt http://example.com # download the content and save it to the file.txt
+  
+  netstat -tuln # netstat – View network connections (:older
+  ss -tuln # Modern more used - 
+  t = TCP, u = UDP, l = Listening, n = Numeric IPs
+  
+  ufw – Simple Firewall Management
+  Firewall -> A firewall is like a security guard standing at your house’s doors.
+  It checks who's allowed to come in, and who must stay out — so that only trusted visitors can enter.
+  
+  sudo ufw status             # View status of fire wall is on or off
+  sudo ufw allow 22           # Allow SSH port
+  sudo ufw allow 80           # Allow HTTP
+  sudo ufw enable             # Turn firewall on
 
 
 
 # ======================== Part 5:  SSH & SCP – AWS EC2 Access & File Transfer ===============
 
-SSH -> To log in and control the server
-
-ssh ubuntu@<EC2-IP> # skip key verification
-ssh -i my-key.pem ubuntu@<EC2-PUBLIC-IP> # if using a private key -> -i my-key.pem
-
-SCP ->  To copy files to or from the server(Secure file Transfer)
-
-scp myfile.txt ubuntu@your-server-ip:/home/ubuntu/  # To send a file to the server:
-scp ubuntu@your-server-ip:/home/ubuntu/log.txt .  # To download a file from the server:
+  SSH -> To log in and control the server
+  
+  ssh ubuntu@<EC2-IP> # skip key verification
+  ssh -i my-key.pem ubuntu@<EC2-PUBLIC-IP> # if using a private key -> -i my-key.pem
+  
+  SCP ->  To copy files to or from the server(Secure file Transfer)
+  
+  scp myfile.txt ubuntu@your-server-ip:/home/ubuntu/  # To send a file to the server:
+  scp ubuntu@your-server-ip:/home/ubuntu/log.txt .  # To download a file from the server:
 
 
 
@@ -200,24 +201,24 @@ scp ubuntu@your-server-ip:/home/ubuntu/log.txt .  # To download a file from the 
 
 # ==================== Part 6: Package Installation - apt, git, node, docker ====================
 
-Update your system
-sudo apt update # apt advanced package tool
-sudo apt upgrade 
-
-install git
-sudo apt install git
-git --version
-
-install nodejs
-sudo apt install nodejs npm
-node -v
-npm -v
-
-install docker
-sudo apt install docker.io
-sudo systemctl start docker
-sudo systemctl enable docker
-docker --version
-
-Give your user permission to run Docker:
-sudo usermod -aG docker $USER
+  Update your system
+  sudo apt update # apt advanced package tool
+  sudo apt upgrade 
+  
+  install git
+  sudo apt install git
+  git --version
+  
+  install nodejs
+  sudo apt install nodejs npm
+  node -v
+  npm -v
+  
+  install docker
+  sudo apt install docker.io
+  sudo systemctl start docker
+  sudo systemctl enable docker
+  docker --version
+  
+  Give your user permission to run Docker:
+  sudo usermod -aG docker $USER

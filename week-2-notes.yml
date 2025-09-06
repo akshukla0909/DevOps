@@ -159,7 +159,7 @@ Steps =>
   docker stop <ID>                    # Stop a container
   docker start <ID or name>           # Re start a container 
   docker rm <ID>                      # Remove a container
-  docker rm -f 
+  docker rm -f <ID>                   # remove force fully container
 
 # Volume
 
@@ -167,3 +167,7 @@ Steps =>
   docker run -v mydata:/app/data ubuntu
   docker volume ls
   docker volume inspect mydata
+
+
+# Pending task:
+  How to register docker images in docker hub or AWS ECR
