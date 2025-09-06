@@ -52,12 +52,11 @@ echo "Hello Akash!" >> dummy-file.txt  # Instead over write it will append
 
 # Quick Tips
 man ls  # This opens the manual (man) page for the ls command. It shows
-cd help #
+cd help 
 
 
 # Optional: Add an alias in your -> .bashrc
 Aliases make your life easier — like giving your sword a nickname 
-
 
 
 

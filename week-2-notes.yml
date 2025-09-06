@@ -2,13 +2,13 @@
 
 Common Terms
 
-| Term         | Real World Analogy              |
-| ------------ | ------------------------------- |
-| Docker Image | Blueprint or recipe             |
-| Container    | lunch box in your hand          |
-| Dockerfile   | Instruction manual              |
-| Volume       | External hard disk attached     |
-| Network      | LAN connection for containers   |
+| Term         | Real World Analogy                                                                                   |
+| ------------ | -----------------------------------------------------------------------------------------------------                                                                     |
+| Docker Image | a Blueprint or snapshot of project                                                                   |
+| Container    | A instance or actual running implementation of docker image                                          |
+| Dockerfile   | Instruction manual                                                                                   |
+| Volume       | External hard disk attached/ To persist data -- a folder for container                               |
+| Network      | LAN connection for containers  docker container can communicate using network/ communication bridge  |
 
 # Docker Image – The Prototype or Mould (Immutable Recipe)
 A read-only template with the app + OS + libraries bundled.
@@ -62,3 +62,39 @@ Like .gitignore, it tells Docker what to ignore while copying files. This keeps 
 Task ->
 Build
 App running in Docker locally + source code on GitHub
+
+
+
+
+# =========================== Common Hosting Types & Terms  =================================
+
+# Shared Hosting
+  Multiple websites are hosted in same server, Common CPU, RAM, Bandwidth (like shared hall/room)
+  Cheap and easy
+  Cons - If a website is taking too much resources other might get slow and perform poor latency
+  ex- hostinger shared hosting
+
+# VPS (Virtual Private Server)
+  A virtual server is divided and each part isolated given to user (like private room)
+  Same as shared server but resources are Dedicated (CPU/RAM Slice)
+  a bit costly compare to shared hosting but more control over server
+  ex- DigitalOcean, Hostinger VPS, Linode.
+
+# Dedicated
+  A complete server is dedicated to the user
+  Maximum control with maximum performace
+  Cons - More costly and req maintaince as well
+  ex- ideal for - Enterprises or high traffic website
+
+# Serverless Hosting
+  Hosting model where you don’t manage the server.
+  Servers are still there, but provider handles them.
+  You only upload your code/functions.
+  AWS Lambda, Vercel, Netlify, Firebase 
+  
+
+# Managed
+
+# Cloud Hosting
+  Website run on multiple server 
+  Ideal for scalable user base

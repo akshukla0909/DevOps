@@ -60,6 +60,3 @@ A type api.eisele.com 192.123.112.12 TTL : 300
 A type app.eisele.com 192.123.112.12 TTL : 300
 TXT type
 ------------
-
-<!-- Recording -->
-<!-- https://drive.google.com/drive/folders/1DM7GWRJ7ayM0fWnKtI11pyhLWGLQuv4a?usp=sharing -->

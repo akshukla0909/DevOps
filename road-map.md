@@ -119,37 +119,6 @@
 
 ---
 
-## 💡 **Mini Project: Daily Quotes App**
-
-| Component   | Description                                     |
-| ----------- | ----------------------------------------------- |
-| Frontend    | React app that fetches & displays a daily quote |
-| Backend     | Node.js + Express API with `/api/quote`         |
-| Database    | MongoDB/Postgres to store quotes                |
-| Admin Route | Secure route to add/edit/delete quotes          |
-
----
-
-## 📁 **Suggested Project Structure**
-
-```plaintext
-daily-quotes-app/
-├── backend/
-│   ├── Dockerfile
-│   └── src/
-├── frontend/
-│   ├── Dockerfile
-│   └── public/
-├── docker-compose.yml
-├── .env
-├── .github/
-│   └── workflows/
-│       └── deploy.yml
-└── README.md
-```
-
----
-
 ## 🔗 **Final Hosting Architecture**
 
 ```plaintext
