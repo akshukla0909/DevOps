@@ -1,7 +1,7 @@
 
 # **Week 2 Learnings – Key Points**
 
-### **Common Hosting Types**
+## 0 **Common Hosting Types**
 
 * **Shared Hosting** → multiple websites on same server, cheap, limited resources.
 * **VPS (Virtual Private Server)** → virtual partition with dedicated resources, more control.
@@ -10,95 +10,13 @@
 * **Managed Hosting** → provider manages technical setup, you focus on app.
 * **Cloud Hosting** → app runs on multiple servers, scalable.
 
----
 
-### **Docker Core Concepts**
-
-* **Docker Engine** → builds, runs, manages containers.
-
-  * **Docker Daemon (`dockerd`)** → background service doing actual work.
-  * **Docker CLI (`docker`)** → commands to interact with daemon.
-  * **REST API** → communication interface for tools/CLI.
-
-* **Common Terms:**
-
-  * **Docker Image** → blueprint/template of app + environment.
-  * **Container** → running instance of image.
-  * **Dockerfile** → instruction set to build image.
-  * **Volume** → persistent storage outside container lifecycle.
-  * **Network** → allows containers to communicate securely.
-
-* **Linux features Docker uses** → Namespaces + Control Groups (cgroups).
-
----
-
-### **Docker Image & Container**
-
-* **Image** → read-only, immutable recipe (like a prototype).
-* **Container** → running instance of image (isolated process).
-* Commands:
-
-  * `docker pull node:18` → pull image from registry.
-  * `docker images` → list images.
-  * `docker run -it node:18 bash` → start interactive container.
-
----
-
-### **Docker Volumes & Networks**
-
-* **Volumes** → data persists even if container deleted.
-
-  * `docker volume create mydata`
-  * `docker run -v mydata:/app/data ubuntu`
-* **Networks** → container-to-container communication.
-
-  * `docker network create mynetwork`
-  * `docker run --network mynetwork …`
-
----
-
-### **Docker Hub & AWS ECR**
-
-* **Docker Hub** → public/default registry for images.
-* **AWS ECR** → private, secure, scalable registry for AWS deployment.
-* Push flow:
-
-  1. `docker build -t myapp .`
-  2. `docker tag myapp:latest <username>/myapp:latest`
-  3. `docker push <username>/myapp:latest`
-  4. `docker pull <username>/myapp:latest`
-
----
-
-### **Dockerfile & .dockerignore**
-
-* **Dockerfile** → step-by-step instructions to build image.
-* **.dockerignore** → ignore files/folders when building image → smaller, cleaner image.
-
----
-
-### **Essential Docker Commands**
-
-**Images:**
-
-* `docker build -t my-app .` → build image
-* `docker images` → list images
-* `docker rmi my-app` → remove image
-
-**Containers:**
-
-* `docker run -d -p 3000:3000 --name container-name image-name` → run in background
-* `docker ps` → running containers
-* `docker ps -a` → all containers
-* `docker stop <ID>` → stop container
-* `docker start <ID>` → start container
-* `docker rm <ID>` → remove container
-
-**Volumes:**
-
-* `docker volume create mydata`
-* `docker volume ls` → list volumes
-* `docker volume inspect mydata` → inspect volume
+## 1 **Docker Core Concepts**
+## 2 **Docker Image & Container**
+## 3 **Docker Volumes & Networks**
+## 4 **Docker Hub & AWS ECR**
+## 5 **Dockerfile & .dockerignore**
+## 6 **Essential Docker Commands**
 
 ---
 

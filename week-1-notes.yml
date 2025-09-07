@@ -1,54 +1,13 @@
 # **Week 1 Learnings – Key Points**
 
 ### **Linux Basics**
-
-* Linux = kernel, Ubuntu = popular Linux distribution (OS).
-* WSL = Windows Subsystem for Linux → run Linux on Windows without VM.
-
 ### **File System & Navigation**
-
-* `pwd`, `cd`, `ls` for navigation.
-* Root (`/`) vs Home (`~/`) directory.
-* Create/delete files/folders: `mkdir`, `touch`, `rm`, `rm -r`.
-* Write/append to files: `echo`, `cat`, `nano`.
-* `.dockerignore` concept (optional in Docker workflow).
-
 ### **Permissions & Ownership**
-
-* File permissions: `rwx` (read, write, execute) for user, group, others.
-* Commands: `ls -l`, `chmod` (change permissions), `chown` (change ownership).
-* `sudo` → execute commands as root; check privileges with `sudo -l`.
-
 ### **Process Management**
-
-* Processes have PID; view with `ps`, `top`, `htop`.
-* Kill processes: `kill <PID>`, `killall <name>`.
-* Background/foreground jobs: `&` operator.
-* System services: `systemctl start|stop|restart|status|enable`.
-
 ### **Networking Essentials**
-
-* `ping`, `curl` → check connectivity, fetch headers or content.
-* `netstat`, `ss` → view open ports and connections.
-* `ufw` → firewall management (allow/deny ports).
-
 ### **SSH & SCP**
-
-* SSH → login to remote server (`ssh -i key.pem user@IP`).
-* SCP → secure copy files to/from server.
-
 ### **Package Installation**
-
-* System update: `sudo apt update && sudo apt upgrade`.
-* Install packages: `git`, `nodejs/npm`, `docker`.
-* Check versions: `git --version`, `node -v`, `npm -v`, `docker --version`.
-* Docker setup: start & enable service, add user to `docker` group.
-
 ### **Miscellaneous Tips**
-
-* Aliases → shortcut commands via `.bashrc`.
-* Manual pages: `man <command>` for help.
-* Node version conflicts → can use `.nvmrc` or Docker for consistency.
 
 
 # ============================ Part 0: Intro to Linux & WSL ============================
@@ -62,6 +21,9 @@
   Its compatibility layer developed by Microsoft allowing users to run a GNU/Linux environment, 
   including command-line tools, utilities, and applications, 
   directly on Windows without a separate virtual machine or dual-boot. 
+
+  WSL = Windows Subsystem for Linux → run Linux on Windows without VM.
+
 
 # Read this Official doc for more guide
 https://learn.microsoft.com/en-us/windows/wsl/install
