@@ -51,3 +51,6 @@
    * Structure project for maintainability and scalability.
 
 ---
+
+# to check docker network - and inspect the perticular container ip and other details
+docker newtwork inspect bridge
