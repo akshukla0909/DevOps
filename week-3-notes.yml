@@ -1,5 +1,6 @@
 ## 🟨 **Week 2 – Docker Compose + MERN + MongoDB + ENV Handling**
 ### **Overview**
+
 📌 **Outcome by the end of this week:**
 
 * Full MERN stack app running locally **inside Docker containers**
@@ -53,5 +54,4 @@
 ---
 
 # to check docker network - and inspect the perticular container ip and other details
-
 docker newtwork inspect bridge
